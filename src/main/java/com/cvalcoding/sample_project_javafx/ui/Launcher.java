@@ -1,4 +1,4 @@
-package com.cvalcoding.sample_project_javafx;
+package com.cvalcoding.sample_project_javafx.ui;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AppWindow extends Application {
+public class Launcher extends Application {
 
     private Parent createContent() {
         return new StackPane(new Text("Hello World"));
