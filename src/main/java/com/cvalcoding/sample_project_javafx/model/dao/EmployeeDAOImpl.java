@@ -1,6 +1,7 @@
 package com.cvalcoding.sample_project_javafx.model.dao;
 
 import com.cvalcoding.sample_project_javafx.config.DatabaseManager;
+import com.cvalcoding.sample_project_javafx.config.Log;
 import com.cvalcoding.sample_project_javafx.model.entity.Employee;
 
 import java.sql.Connection;
@@ -32,7 +33,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.error(e.getMessage());
 		}
 		return employeeList;
 	}
@@ -40,7 +41,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 	/**
 	 * Get single object
 	 *
-	 * @param id
+	 * @param id get element by id
 	 * @return Employee
 	 */
 	@Override
@@ -49,14 +50,14 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 		Employee employee = null;
 
 		try (Connection connection = DatabaseManager.getInstance().getConnection();
-		     PreparedStatement stmt = connection.prepareStatement(query);) {
+		     PreparedStatement stmt = connection.prepareStatement(query)) {
 			try (ResultSet rs = stmt.executeQuery(query)) {
 				while (rs.next()) {
 					employee = createEmployee(rs);
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.error(e.getMessage());
 		}
 
 		return employee;
@@ -65,15 +66,15 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 	/**
 	 * Add employee object
 	 *
-	 * @param employee
+	 * @param employee params employee object
 	 */
 	@Override
 	public void add(Employee employee) {
 		String query = String.format("INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?)", TABLE);
-		try (Connection connection = DatabaseManager.getInstance().getConnection();
+		try (Connection connection = DatabaseManager.getInstance().getConnection()
 		) {
 			connection.setAutoCommit(false);
-			try (PreparedStatement ps = connection.prepareStatement(query);) {
+			try (PreparedStatement ps = connection.prepareStatement(query)) {
 				ps.setLong(1, employee.getEmployeeNumber());
 				ps.setString(2, employee.getLastName());
 				ps.setString(3, employee.getFirstName());
@@ -85,23 +86,23 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				ps.executeUpdate();
 				connection.commit();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.error(e.getMessage());
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.error(e.getMessage());
 		}
 	}
 
 	/**
 	 * Update employee object
 	 *
-	 * @param employee
+	 * @param employee params employee object
 	 */
 	@Override
 	public void update(Employee employee) {
 		String query = String.format("UPDATE %s SET lastName=?, firstName=?, extension=?, email=?, officeCode=?, reportsTo=?, jobTitle=? WHERE employeeNumber=?", TABLE);
-		try (Connection connection = DatabaseManager.getInstance().getConnection();
+		try (Connection connection = DatabaseManager.getInstance().getConnection()
 		) {
 			connection.setAutoCommit(false);
 			try (PreparedStatement ps = connection.prepareStatement(query)) {
@@ -117,11 +118,11 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				ps.executeUpdate();
 				connection.commit();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.error(e.getMessage());
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.error(e.getMessage());
 
 		}
 	}
@@ -129,30 +130,30 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 	/**
 	 * Remove employee object
 	 *
-	 * @param employee
+	 * @param employee params employee object
 	 */
 	@Override
 	public void remove(Employee employee) {
 		String query = String.format("DELETE FROM %s WHERE employeeNumber = %s", TABLE, employee.getEmployeeNumber());
-		try (Connection connection = DatabaseManager.getInstance().getConnection();) {
+		try (Connection connection = DatabaseManager.getInstance().getConnection()) {
 			connection.setAutoCommit(false);
-			try (PreparedStatement ps = connection.prepareStatement(query);) {
+			try (PreparedStatement ps = connection.prepareStatement(query)) {
 				ps.executeUpdate();
 				connection.commit();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.error(e.getMessage());
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.error(e.getMessage());
 		}
 	}
 
 	/**
 	 *
-	 * @param rs
-	 * @return
-	 * @throws SQLException
+	 * @param rs params result
+	 * @return employee object
+	 * @throws SQLException exception for mysql
 	 */
 	private Employee createEmployee(ResultSet rs) throws SQLException {
 		return new Employee(
