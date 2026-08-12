@@ -7,35 +7,35 @@ public abstract class Dao<T> {
 	/**
 	 * List all object
 	 *
-	 * @return
+	 * @return object list
 	 */
 	public abstract List<T> getAll();
 
 	/**
 	 * Get object by id
 	 *
-	 * @param id
-	 * @return
+	 * @param id params for object
+	 * @return object single
 	 */
-	public abstract T get(long id);
+	public abstract T getById(long id);
 
 	/**
 	 *
-	 * @param t
+	 * @param t object params
 	 */
-	public abstract void add(T t);
+	public abstract void create(T t);
 
 	/**
 	 *
-	 * @param t
+	 * @param t object params
 	 */
 	public abstract void update(T t);
 
 	/**
 	 *
-	 * @param t
+	 * @param t object params
 	 */
-	public abstract void remove(T t);
+	public abstract void delete(T t);
 
 
 }

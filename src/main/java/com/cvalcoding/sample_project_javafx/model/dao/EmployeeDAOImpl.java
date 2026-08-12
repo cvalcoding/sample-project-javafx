@@ -45,7 +45,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 	 * @return Employee
 	 */
 	@Override
-	public Employee get(long id) {
+	public Employee getById(long id) {
 		String query = String.format("SELECT * FROM %s WHERE employeeNumber = %s", TABLE, id);
 		Employee employee = null;
 
@@ -69,7 +69,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 	 * @param employee params employee object
 	 */
 	@Override
-	public void add(Employee employee) {
+	public void create(Employee employee) {
 		String query = String.format("INSERT INTO %s VALUES (?, ?, ?, ?, ?, ?, ?, ?)", TABLE);
 		try (Connection connection = DatabaseManager.getInstance().getConnection()
 		) {
@@ -133,7 +133,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 	 * @param employee params employee object
 	 */
 	@Override
-	public void remove(Employee employee) {
+	public void delete(Employee employee) {
 		String query = String.format("DELETE FROM %s WHERE employeeNumber = %s", TABLE, employee.getEmployeeNumber());
 		try (Connection connection = DatabaseManager.getInstance().getConnection()) {
 			connection.setAutoCommit(false);
