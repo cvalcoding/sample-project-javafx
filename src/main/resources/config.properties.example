@@ -1,0 +1,5 @@
+db.url=localhost
+db.jdbc=mysql
+db.name=
+db.user=
+db.pwd=
