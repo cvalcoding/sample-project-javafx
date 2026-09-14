@@ -1,7 +1,7 @@
 package com.cvalcoding.sample_project_javafx.model.dao;
 
 import com.cvalcoding.sample_project_javafx.config.DatabaseManager;
-import com.cvalcoding.sample_project_javafx.config.Log;
+import com.cvalcoding.sample_project_javafx.config.LogManager;
 import com.cvalcoding.sample_project_javafx.model.entity.Employee;
 
 import java.sql.Connection;
@@ -33,7 +33,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				}
 			}
 		} catch (SQLException e) {
-			Log.error(e.getMessage());
+			LogManager.error(e.getMessage());
 		}
 		return employeeList;
 	}
@@ -57,7 +57,7 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				}
 			}
 		} catch (SQLException e) {
-			Log.error(e.getMessage());
+			LogManager.error(e.getMessage());
 		}
 
 		return employee;
@@ -86,11 +86,11 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				ps.executeUpdate();
 				connection.commit();
 			} catch (SQLException e) {
-				Log.error(e.getMessage());
+				LogManager.error(e.getMessage());
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			Log.error(e.getMessage());
+			LogManager.error(e.getMessage());
 		}
 	}
 
@@ -118,11 +118,11 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				ps.executeUpdate();
 				connection.commit();
 			} catch (SQLException e) {
-				Log.error(e.getMessage());
+				LogManager.error(e.getMessage());
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			Log.error(e.getMessage());
+			LogManager.error(e.getMessage());
 
 		}
 	}
@@ -141,11 +141,11 @@ public class EmployeeDAOImpl extends Dao<Employee> {
 				ps.executeUpdate();
 				connection.commit();
 			} catch (SQLException e) {
-				Log.error(e.getMessage());
+				LogManager.error(e.getMessage());
 				connection.rollback();
 			}
 		} catch (SQLException e) {
-			Log.error(e.getMessage());
+			LogManager.error(e.getMessage());
 		}
 	}
 

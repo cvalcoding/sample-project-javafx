@@ -27,11 +27,11 @@ public class DatabaseManager {
 				this.connection = DriverManager.getConnection(url, prop.getProperty("db.user"),
 						prop.getProperty("db.pwd"));
 			} catch (SQLException e) {
-				Log.error(e.getMessage());
+				LogManager.error(e.getMessage());
 			}
 
 		} catch (IOException e) {
-			Log.error(e.getMessage());
+			LogManager.error(e.getMessage());
 			throw new RuntimeException(e);
 		}
 

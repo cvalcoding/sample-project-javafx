@@ -2,11 +2,11 @@ package com.cvalcoding.sample_project_javafx.config;
 
 import org.apache.logging.log4j.Logger;
 
-public class Log {
+public class LogManager {
 
 	private static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger();
 
-	private Log() {
+	private LogManager() {
 	}
 
 	/**

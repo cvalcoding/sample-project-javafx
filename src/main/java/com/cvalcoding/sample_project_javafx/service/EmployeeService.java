@@ -1,6 +1,6 @@
 package com.cvalcoding.sample_project_javafx.service;
 
-import com.cvalcoding.sample_project_javafx.config.Log;
+import com.cvalcoding.sample_project_javafx.config.LogManager;
 import com.cvalcoding.sample_project_javafx.model.dao.EmployeeDAOImpl;
 import com.cvalcoding.sample_project_javafx.model.entity.Employee;
 
@@ -36,7 +36,7 @@ public class EmployeeService {
 	public Employee getById(long id) {
 		Employee employee = this.employeeDAO.getById(id);
 		if(employee == null) {
-			Log.error("User not found");
+			LogManager.error("User not found");
 			return null;
 		}
 		return employee;
